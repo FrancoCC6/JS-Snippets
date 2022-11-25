@@ -4,6 +4,7 @@ if (!/tio\.run*/.exec(window.location.href)) // Impide que se ejecute en otro do
 	return;
 
 console.log('Activado TIO Restrictivo version ' + VERSION);
+console.log('Hola Bauti :)');
 
 let code_area 		= document.getElementById('code'),
 	helloworld_btn 	= document.getElementById('lang-example'),
