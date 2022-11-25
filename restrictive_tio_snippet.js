@@ -1,37 +1,38 @@
-(function() {
-	if (!/tio\.run*/.exec(window.location.href)) // Impide que se ejecute en otro dominio que no sea tio.run
-		return;
+const VERSION = '2.0';
 
-	let code_area 		= document.getElementById('code'),
-		helloworld_btn 	= document.getElementById('lang-example'),
-		og_footer_area 	= document.getElementById('footer');
+if (!/tio\.run*/.exec(window.location.href)) // Impide que se ejecute en otro dominio que no sea tio.run
+	return;
 
-	// Impide la generacion automatica de codigo
-	helloworld_btn.parentNode.removeChild(helloworld_btn);
+console.log('Activado TIO Restrictivo version ' + VERSION);
 
-	// Campo que no se va a usar se deja como machete para copiar codigo basico
-	og_footer_area
-		.previousElementSibling
-		.firstChild
-		.lastChild
-		.innerHTML = 'Machete';
+let code_area 		= document.getElementById('code'),
+	helloworld_btn 	= document.getElementById('lang-example'),
+	og_footer_area 	= document.getElementById('footer');
 
-	og_footer_area.value = 
+// Impide la generacion automatica de codigo
+helloworld_btn.parentNode.removeChild(helloworld_btn);
+
+// Campo que no se va a usar se deja como machete para copiar codigo basico
+og_footer_area
+	.previousElementSibling
+	.firstChild
+	.lastChild
+	.innerHTML = 'Machete';
+
+og_footer_area.value = 
 `public class Main {
 	public static void main(String[] args) {
 
 	}
-}`
-	;
+}`;
 
-	// El machete queda de solo lectura
-	og_footer_area.setAttribute('disabled', '');
-	og_footer_area.setAttribute('style', 'height: 103px');
+// El machete queda de solo lectura
+og_footer_area.setAttribute('disabled', '');
+og_footer_area.setAttribute('style', 'height: 103px');
 
-	code_area.value = '';
-	code_area.addEventListener('paste', e => e.preventDefault());
-	code_area.addEventListener('keydown', e => {
-		if (e.ctrlKey && e.code == 'KeyX')
-			code_area.value = '';
-	});
-})();
+code_area.value = '';
+code_area.addEventListener('paste', e => e.preventDefault());
+code_area.addEventListener('keydown', e => {
+	if (e.ctrlKey && e.code == 'KeyX')
+		code_area.value = '';
+});
